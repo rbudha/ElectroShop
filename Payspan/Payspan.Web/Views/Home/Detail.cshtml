@@ -1,0 +1,32 @@
+﻿@model Payspan.Web.Models.Product
+@{
+    ViewBag.Title = @Model.Name;
+}
+<script type="text/javascript">
+    function validateQuantity() {
+        var qty = $("#Quantity").val();
+        if (qty == "") {
+            alert("Enter valid quantity.");
+            return false;
+        }
+        else if (qty < 1) {
+            alert("Quantity must be 1 or more.");
+            return false;
+        }
+        else if (isNaN(qty)) {
+            alert("Quantity must be a valid number.");
+            return false;
+        }
+        return true;
+    }
+</script>
+<h2>@ViewBag.Title</h2>
+<p>@Model.Description</p>
+<b>Price: @String.Format("{0:C}",@Model.UnitPrice)</b>
+@using(Html.BeginForm("Add", "Cart", new {ID = @Model.ID}))
+{
+    @Html.Label("Qty:");
+    @Html.TextBox("Quantity", null, new { Style="width:50px" });
+                                                             
+    <input id="submit" type="submit" value="Add to Cart" onclick="return validateQuantity()"/>
+}

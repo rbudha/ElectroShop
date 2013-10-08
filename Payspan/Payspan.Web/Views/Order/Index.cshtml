@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "My Orders";
+}
+
+<h2>My Orders</h2>
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+    </tr>
+
+@foreach (var order in @Model)
+{
+   <tr>
+        <td>@Html.ActionLink((string)@order.ID.ToString(), "Detail", new { ID = @order.ID })</td>
+        <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
+        <td>@String.Format("{0:C}",@order.TotalAmount)</td>
+        <td>@order.Status</td>
+   </tr>
+}
+</table>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model List<Payspan.Web.Models.Product>
+
+<h3>Products</h3>
+
+@foreach (Payspan.Web.Models.Product product in Model)
+{
+    <div class="product-div">
+        <h3>@Html.ActionLink(@product.Name, "Detail", new { ID = @product.ID })</h3>
+        <p>@product.Description</p>
+        <b>Price: @product.UnitPrice</b>
+        <hr />
+    </div>
+}
